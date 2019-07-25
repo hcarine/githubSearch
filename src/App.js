@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import SearchProject from './components/SearchProject'
+import CompanyDetails from './components/CompanyDetails'
 import {getCompanyProject} from './client/api'
 
 function App() {
-  const [result, setResult] = useState("")
+  const [result, setResult] = useState([])
 
   const callApi = (text) => {
     getCompanyProject(text, setResult)
@@ -16,9 +17,7 @@ function App() {
         Github Search
       </header>
       <SearchProject callApi={callApi}/>
-      <div>
-        {result.length}
-      </div>
+     {result.length && <CompanyDetails companyProjects={result}/>}
     </div>
   );
 }
