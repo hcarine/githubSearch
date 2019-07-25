@@ -1,16 +1,38 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ProjectCards from './ProjectCards'
+import FilterProjects from './FilterProjects'
+import { getPrograminLanguages } from '../commons/utils';
 
-const CompanyDetails = (props) => {
-    return  props.result.length  ? (
+
+const CompanyDetails = ({companyProjects}) => {
+    const [projects, setProjects] = useState(companyProjects)
+
+    //useEffect(() => { setProjects(companyProjects) });
+
+    const programinLanguages = getPrograminLanguages(companyProjects);
+
+    const filteProjectByLanguage = (projects,language) => {
+        console.log(projects.filter(project=> project.language === language))
+        const a= projects.filter(project=> project.language === language)
+        setProjects(a)
+    }
+
+
+    return  companyProjects.length  ? (
         <div>
             <h1>
-                <img src={props.result[0].owner.avatar_url} alt="company avatar" height="42" width="42"></img>
-                 {props.result[0].owner.login}
+                <img src={companyProjects[0].owner.avatar_url} alt="company avatar" height="42" width="42"></img>
+                 {companyProjects[0].owner.login}
             </h1>
 
+            <div>
+                <h2>Filter</h2>
+                <FilterProjects languages={programinLanguages} callBack={filteProjectByLanguage} projects={projects}/>
+            </div>
+
+
             <h2>Projects</h2>
-            <ProjectCards company={props.result}/>
+            <ProjectCards projects={projects}/>
         </div>
        ): 
        <div>

@@ -17,7 +17,7 @@ function App() {
         Github Search
       </header>
       <SearchProject callApi={callApi}/>
-      <CompanyDetails result={result}/>
+     {result.length && <CompanyDetails companyProjects={result}/>}
     </div>
   );
 }

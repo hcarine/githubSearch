@@ -9,19 +9,20 @@ const cardStyle = {
   'margin': '10px',
 }
 
-const ProjectCards = (props) => {
-    return props.company.map(project=>
+const ProjectCards = ({projects}) => {
+  console.log({projects})
+    return projects.map(project=>
         (
-        <Card style={cardStyle}>
+        <Card style={cardStyle} key={project.id}>
             <CardContent>
               <Typography variant="h6" component="h4">
                 {project.name}
               </Typography>
               <Typography color="textSecondary">
-                { project.language}x
+                { project.language }
               </Typography>
               <Typography variant="body2" component="p">
-                { project.stars}
+                Stars: { project.stargazers_count}
               </Typography>
             </CardContent>
           </Card>
