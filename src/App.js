@@ -18,6 +18,10 @@ function App() {
       </header>
       <SearchProject callApi={callApi}/>
      {result.length && <CompanyDetails companyProjects={result}/>}
+     {!result.length &&  
+       <div>
+          try with the company name
+       </div>}
     </div>
   );
 }
