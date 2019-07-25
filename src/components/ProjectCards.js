@@ -10,7 +10,6 @@ const cardStyle = {
 }
 
 const ProjectCards = ({projects}) => {
-  console.log({projects})
     return projects.map(project=>
         (
         <Card style={cardStyle} key={project.id}>

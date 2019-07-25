@@ -3,22 +3,17 @@ import ProjectCards from './ProjectCards'
 import FilterProjects from './FilterProjects'
 import { getPrograminLanguages } from '../commons/utils';
 
-
 const CompanyDetails = ({companyProjects}) => {
     const [projects, setProjects] = useState(companyProjects)
-
-    //useEffect(() => { setProjects(companyProjects) });
 
     const programinLanguages = getPrograminLanguages(companyProjects);
 
     const filteProjectByLanguage = (projects,language) => {
-        console.log(projects.filter(project=> project.language === language))
-        const a= projects.filter(project=> project.language === language)
-        setProjects(a)
+        const filteredProjecs= projects.filter(project=> project.language === language)
+        setProjects(filteredProjecs)
     }
 
-
-    return  companyProjects.length  ? (
+    return  (
         <div>
             <h1>
                 <img src={companyProjects[0].owner.avatar_url} alt="company avatar" height="42" width="42"></img>
@@ -30,14 +25,10 @@ const CompanyDetails = ({companyProjects}) => {
                 <FilterProjects languages={programinLanguages} callBack={filteProjectByLanguage} projects={projects}/>
             </div>
 
-
             <h2>Projects</h2>
             <ProjectCards projects={projects}/>
         </div>
-       ): 
-       <div>
-           The company does not exist
-       </div>
+    )
 }
 
 export default CompanyDetails;
